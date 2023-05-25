@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +19,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
-Route::get('/user',[UserController::class, 'index']);
+Route::get('/user', [UserController::class, "index"])->name('user.index');
+Route::get('/tambah', [UserController::class, "tambah"]);
+Route::get('/edit', [UserController::class, "edit"])->name('user.edit');
+
+Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
+Route::get('/category', [CategoryController::class, "index"])->name('category.index');
+Route::get('/product', [ProductController::class, "index"])->name('product.index');
+Route::get('/role', [RoleController::class, "index"])->name('role.index');
